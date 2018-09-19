@@ -9,13 +9,16 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    
-    first++;
+    storage[last] = value;
+    last++;
   };
 
   someInstance.dequeue = function() {
-    if (count > 0) {
-      last--;
+    if (Object.keys(storage).length > 0) {
+      var deleted = storage[first];
+      delete storage[first];
+      first++;
+      return deleted;
     }
   };
 
