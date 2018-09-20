@@ -3,30 +3,30 @@ var LinkedList = function() {
   list.head = null;
   list.tail = null;
 
-  list.addToTail = function(value) {
-          // var findTail = function(elem) {
-          //   // find tail
-          //   if (elem.next !== null) {
-          //     findTail(elem.next);
-          //   } else {
-          //   return elem;
-          //   }
-          // };
-          // list.tail = findTail(list.head);
-          // list.tail.next = value;
-    if (list.head !== null) {
+  list.addToTail = function(value) {5
+    if (list.head === null) {
       list.tail = {value: value, next: null};
+      list.head = list.tail;
     } else {
-      //list.head = {value: value, next: null};
-      list.head = {value: value, next: list.tail};
+      list.tail.next = {value: value, next: null};
+      list.tail = {value: value, next: null};
     }
   };
 
   list.removeHead = function() {
-    //list.head = list.head.next;
+    var removed = list.head;
+    list.head = list.head.next;
+    return removed.value;
   };
 
-  list.contains = function(target) {
+  list.contains = function(target, elem) {
+    var elem = elem || list.head;
+    if (elem.value === target) {
+      return true;
+    } else if (elem.next !== null) {
+      return list.contains(target, elem.next);
+    }
+    return false;
   };
 
   return list;
