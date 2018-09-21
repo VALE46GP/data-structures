@@ -11,20 +11,24 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  this.children.push({value: value, children: []});
+  this.children.push(Tree(value));
 };
 
 treeMethods.contains = function(target, elem) {
   var elem = elem || this;
   var found = false;
+
   if (elem.value === target) {
-    found = true;
+    return true;
   } else if (elem.children.length) {
     for (var i = 0, len = elem.children.length; i < len; i++) {
-      treeMethods.contains(elem.children[i]);
+      found = treeMethods.contains(target, elem.children[i]);
+      if (found) {
+        return found
+      };
     }
   }
-  return false;
+  return found;
 };
 
 
