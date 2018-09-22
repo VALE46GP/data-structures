@@ -47,6 +47,12 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
+  it('should handle values that are not primitives', function() {
+    hashTable.insert('obj', {a: 1});
+    hashTable.insert('arr', [0, 'hello']);
+    expect(hashTable.retrieve('obj')).to.deep.equal({a: 1});
+  });
+
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
     _.each(people, function(person) {
