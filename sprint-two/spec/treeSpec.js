@@ -41,4 +41,11 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('should be able to remove children at passed in value', function() {
+    tree.addChild(5);
+    tree.children[0].addChild(6);
+    tree.removeChildren(5);
+    expect(tree.contains(6)).to.equal(false);
+  })
+
 });
