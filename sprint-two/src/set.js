@@ -18,6 +18,17 @@ setPrototype.remove = function(item) {
   this._storage = this._storage.filter(i => i !== item);
 };
 
+setPrototype.shared = function(otherSet) {
+  // **could be refactored to except multiple sets**
+  var shared = [];
+  this._storage.forEach(e => {
+    if (otherSet.contains(e)) {
+      shared.push(e);
+    }
+  });
+  return shared;
+};
+
 /*
  * Complexity: What is the time complexity of the above functions?
  */
