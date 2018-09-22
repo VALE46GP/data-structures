@@ -68,4 +68,14 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should handle arguments that are not values in graph', function() {
+    graph.addNode(4);
+    graph.addNode(5);
+    graph.addEdge(5, 4);
+    expect(graph.hasEdge(4, 5)).to.equal(true);
+    expect(graph.removeEdge(5, 40)).to.equal('Node \'40\' does not exist');
+    expect(graph.hasEdge(4, 5)).to.equal(true);
+  });
+    
 });
